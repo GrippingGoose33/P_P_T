@@ -1,0 +1,11 @@
+.Game{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px;
+    color: white;
+}
+
+.Texto{
+color: white;
+}
