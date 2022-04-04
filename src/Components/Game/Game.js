@@ -11,29 +11,51 @@ class Game extends Component {
             numberCpu: 0,
             cpuInput: "",
             message: "",
+            message2: "",
             random: generateRandom(3)
         }
     }
 
-    handleOnClick = () => {
-        //const text = afterText(numberPla, numberCpu);
+    handleOnClick = (e) => {
+        const num = e.target.value;
+        const random = parseInt(this.state.random);
+        const text1 = afterText(num, random);
+        const numberCpu = parseInt(this.state.numberCpu + 1);
+        const numberPla = parseInt(this.state.numberPla + 1);
+
+        if(num === 1 && random === 2){
+            this.state({
+                numberCpu: numberCpu + 1, 
+                message: text1,
+            });
+        }
+
+        if(num === 1 && random === 3){
+            this.state({
+                numberPla: numberPla + 1,
+                message: text1,
+            });
+        }
     }
 
     render() {
         return (
-            <div>
-                <p>
+            <div className="Game">
+                <h2>
                     Escoje un objeto
+                </h2>
+
+                <h2 className={(this.state.message)}>s</h2>
+
+                <button value = {1} onClick={this.handleOnClick()}>Piedra</button>
+                <button value = {2} onClick={this.handleOnClick()}>Papel</button>
+                <button value = {3} onClick={this.handleOnClick()}>Tijera</button>
+
+                <p>
+                    <button onClick={this.handleOnClick}>Submit</button>
                 </p>
 
-                <h2 className={(this.state.message)}></h2>
-
-                <button onClick={this.state.plaInput = 1}
-                >Piedra</button>
-                <button onClick={this.state.plaInput = 2}
-                >Papel</button>
-                <button onClick={this.state.plaInput = 3}
-                >Tijera</button>
+                <h1>Cpu: {this.state.cpuInput}</h1>
 
                 <p className= "Texto">Player {this.state.numberPla} - Cpu {this.state.numberCpu}</p>
             </div>
@@ -44,20 +66,21 @@ class Game extends Component {
 export default Game;
 
 function generateRandom(max , min=1){
-    return Math.floor(Math.random() * (max - min) + min);
+    
+   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function afterText(numberPla,numberCpu){
+function afterText(num, random){
 
-    if(numberPla == 1 && numberCpu == 1){
+    if(num === random){
         return "Empate";
     }
 
-    if(numberPla == 2 && numberCpu == 2){
+    if(num === random){
         return "Empate";
     }
 
-    if(numberPla == 3 && numberCpu == 3){
+    if(num === random){
         return "Empate";
     }
 
