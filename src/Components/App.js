@@ -1,4 +1,4 @@
-import logo from './Shared/Images/logo.svg';
+
 import './App.css';
 import Game from './Game/Game';
 
