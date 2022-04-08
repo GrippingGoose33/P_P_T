@@ -16,8 +16,8 @@ class Game extends Component {
         }
     }
 
-    handleOnClick = (e) => {
-        const num = e.target.value;
+    handleOnClick = (event) => {
+        const num = event.target.value;
         const random = parseInt(this.state.random);
         const text1 = afterText(num, random);
         const numberCpu = parseInt(this.state.numberCpu + 1);
@@ -36,6 +36,34 @@ class Game extends Component {
                 message: text1,
             });
         }
+
+        if(num === 2 && random === 3){
+            this.state({
+                numberCpu: numberCpu + 1, 
+                message: text1,
+            });
+        }
+
+        if(num === 2 && random === 1){
+            this.state({
+                numberPla: numberPla + 1,
+                message: text1,
+            });
+        }
+
+        if(num === 3 && random === 1){
+            this.state({
+                numberCpu: numberCpu + 1, 
+                message: text1,
+            });
+        }
+
+        if(num === 3 && random === 2){
+            this.state({
+                numberPla: numberPla + 1,
+                message: text1,
+            });
+        }
     }
 
     render() {
@@ -45,15 +73,13 @@ class Game extends Component {
                     Escoje un objeto
                 </h2>
 
-                <h2 className={(this.state.message)}>s</h2>
+                <h2 className={(this.state.message)}>Resultado</h2>
 
-                <button value = {1} onClick={this.handleOnClick()}>Piedra</button>
-                <button value = {2} onClick={this.handleOnClick()}>Papel</button>
-                <button value = {3} onClick={this.handleOnClick()}>Tijera</button>
+                <button value={1} onClick={this.handleOnClick}>Piedra</button>
+                <button value={2} onClick={this.handleOnClick}>Papel</button>
+                <button value={3} onClick={this.handleOnClick}>Tijera</button>
 
-                <p>
-                    <button onClick={this.handleOnClick}>Submit</button>
-                </p>
+               
 
                 <h1>Cpu: {this.state.cpuInput}</h1>
 
@@ -76,12 +102,27 @@ function afterText(num, random){
         return "Empate";
     }
 
-    if(num === random){
-        return "Empate";
+    if(num === 1 && random === 2){
+        return "pierdes";
     }
 
-    if(num === random){
-        return "Empate";
+    if(num === 1 && random === 3){
+        return "Ganaste";
     }
 
+    if(num === 2 && random === 3){
+        return "pierdes";
+    }
+
+    if(num === 2 && random === 1){
+        return "Ganaste";
+    }
+
+    if(num === 3 && random === 1){
+        return "pierdes";
+    }
+
+    if(num === 3 && random === 2){
+        return "Ganaste";
+    }
 }
